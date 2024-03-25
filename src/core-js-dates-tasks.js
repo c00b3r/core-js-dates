@@ -17,8 +17,8 @@
  * '01 Jan 1970 00:00:00 UTC' => 0
  * '04 Dec 1995 00:12:00 UTC' => 818035920000
  */
-function dateToTimestamp(/* date */) {
-  throw new Error('Not implemented');
+function dateToTimestamp(date) {
+  return Date.parse(date);
 }
 
 /**
@@ -31,8 +31,14 @@ function dateToTimestamp(/* date */) {
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  throw new Error('Not implemented');
+function getTime(date) {
+  const task = new Date(date);
+  const hours = task.getHours() < 10 ? `0${task.getHours()}` : task.getHours();
+  const seconds =
+    task.getSeconds() < 10 ? `0${task.getSeconds()}` : task.getSeconds();
+  const minutes =
+    task.getMinutes() < 10 ? `0${task.getMinutes()}` : task.getMinutes();
+  return `${hours}:${minutes}:${seconds}`;
 }
 
 /**
@@ -46,8 +52,18 @@ function getTime(/* date */) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(/* date */) {
-  throw new Error('Not implemented');
+function getDayName(date) {
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const task = new Date(date);
+  return days[task.getUTCDay()];
 }
 
 /**
@@ -61,8 +77,19 @@ function getDayName(/* date */) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const currentDate = new Date(date);
+
+  const dayOfWeek = currentDate.getDay();
+
+  let daysToAdd = 5 - dayOfWeek;
+  if (daysToAdd <= 0) {
+    daysToAdd += 7;
+  }
+
+  currentDate.setDate(currentDate.getDate() + daysToAdd);
+
+  return currentDate;
 }
 
 /**
@@ -76,8 +103,8 @@ function getNextFriday(/* date */) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
 }
 
 /**
@@ -91,8 +118,15 @@ function getCountDaysInMonth(/* month, year */) {
  * '2024-02-01T00:00:00.000Z', '2024-02-02T00:00:00.000Z'  => 2
  * '2024-02-01T00:00:00.000Z', '2024-02-12T00:00:00.000Z'  => 12
  */
-function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
-  throw new Error('Not implemented');
+function getCountDaysOnPeriod(dateStart, dateEnd) {
+  const start = new Date(dateStart);
+  const end = new Date(dateEnd);
+
+  const timeDifference = end.getTime() - start.getTime();
+
+  const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+
+  return daysDifference;
 }
 
 /**
