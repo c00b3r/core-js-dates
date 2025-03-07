@@ -31,15 +31,14 @@ function dateToTimestamp(date) {
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  // const task = new Date(date);
-  // const hours = task.getHours() < 10 ? `0${task.getHours()}` : task.getHours();
-  // const seconds =
-  //   task.getSeconds() < 10 ? `0${task.getSeconds()}` : task.getSeconds();
-  // const minutes =
-  //   task.getMinutes() < 10 ? `0${task.getMinutes()}` : task.getMinutes();
-  // return `${hours}:${minutes}:${seconds}`;
-  throw new Error('Not implemented');
+function getTime(date) {
+  const task = new Date(date);
+  const hours = task.getHours() < 10 ? `0${task.getHours()}` : task.getHours();
+  const seconds =
+    task.getSeconds() < 10 ? `0${task.getSeconds()}` : task.getSeconds();
+  const minutes =
+    task.getMinutes() < 10 ? `0${task.getMinutes()}` : task.getMinutes();
+  return `${hours}:${minutes}:${seconds}`;
 }
 
 /**
