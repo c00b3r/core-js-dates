@@ -186,17 +186,16 @@ function formatDate(date) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  // let countWeekends = 0;
-  // const daysInMonth = new Date(year, month, 0).getDate();
-  // for (let day = 1; day <= daysInMonth; day += 1) {
-  //   const currentDay = new Date(year, month - 1, day).getDay();
-  //   if (currentDay === 0 || currentDay === 6) {
-  //     countWeekends += 1;
-  //   }
-  // }
-  // return countWeekends;
-  throw new Error('Not implemented');
+function getCountWeekendsInMonth(month, year) {
+  let countWeekends = 0;
+  const daysInMonth = new Date(year, month, 0).getDate();
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const currentDay = new Date(year, month - 1, day).getDay();
+    if (currentDay === 0 || currentDay === 6) {
+      countWeekends += 1;
+    }
+  }
+  return countWeekends;
 }
 
 /**
