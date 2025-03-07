@@ -156,23 +156,22 @@ function isDateInPeriod(date, period) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  // const dateObj = new Date(date);
-  // let hours = dateObj.getUTCHours();
-  // let period = 'AM';
-  // if (hours >= 12) {
-  //   period = 'PM';
-  // }
-  // if (hours > 12) {
-  //   hours -= 12;
-  // }
-  // if (hours === 0) {
-  //   hours = 12;
-  // }
-  // const minutes = dateObj.getUTCMinutes().toString().padStart(2, '0');
-  // const seconds = dateObj.getUTCSeconds().toString().padStart(2, '0');
-  // return `${dateObj.getMonth() + 1}/${dateObj.getUTCDate()}/${dateObj.getFullYear()}, ${hours}:${minutes}:${seconds} ${period}`;
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const dateObj = new Date(date);
+  let hours = dateObj.getUTCHours();
+  let period = 'AM';
+  if (hours >= 12) {
+    period = 'PM';
+  }
+  if (hours > 12) {
+    hours -= 12;
+  }
+  if (hours === 0) {
+    hours = 12;
+  }
+  const minutes = dateObj.getUTCMinutes().toString().padStart(2, '0');
+  const seconds = dateObj.getUTCSeconds().toString().padStart(2, '0');
+  return `${dateObj.getMonth() + 1}/${dateObj.getUTCDate()}/${dateObj.getFullYear()}, ${hours}:${minutes}:${seconds} ${period}`;
 }
 
 /**
