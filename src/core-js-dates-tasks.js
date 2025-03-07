@@ -211,14 +211,13 @@ function getCountWeekendsInMonth(month, year) {
  * Date(2024, 0, 31) => 5
  * Date(2024, 1, 23) => 8
  */
-function getWeekNumberByDate(/* date */) {
-  // const onejan = new Date(date.getFullYear(), 0, 1);
-  // const dayOfYear = Math.floor((date - onejan) / 86400000) + 1;
-  // const daysUntilFirstMonday =
-  //   (onejan.getDay() === 0 ? 7 : onejan.getDay()) - 1;
-  // const daysWithoutFirstWeek = dayOfYear - (7 - daysUntilFirstMonday);
-  // return Math.ceil(daysWithoutFirstWeek / 7) + 1;
-  throw new Error('Not implemented');
+function getWeekNumberByDate(date) {
+  const onejan = new Date(date.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((date - onejan) / 86400000) + 1;
+  const daysUntilFirstMonday =
+    (onejan.getDay() === 0 ? 7 : onejan.getDay()) - 1;
+  const daysWithoutFirstWeek = dayOfYear - (7 - daysUntilFirstMonday);
+  return Math.ceil(daysWithoutFirstWeek / 7) + 1;
 }
 
 /**
